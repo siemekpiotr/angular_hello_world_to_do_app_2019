@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400');
+* {
+    box-sizing: border-box;
+  }
+  
+  .title{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #eeeeee;
+    padding: 20px 20px 10px 20px;
+  }
+  
+  
+  body {
+    font-family: 'Quicksand', sans-serif;
+    //font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    margin-top: 60px;
+    font-size: 18px;
+  }
+
+@media only screen and (max-width: 600px) {
+  .title{
+    text-align: center;
+  }
+  .container{
+    border: 0;
+    padding: 10px;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+  }
+}

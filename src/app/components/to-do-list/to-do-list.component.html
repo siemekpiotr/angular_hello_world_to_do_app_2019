@@ -1,0 +1,45 @@
+<input type="text" aria-label="Default" aria-describedby="inputGroup-sizing-default" class="form-control" 
+placeholder="What to do?" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()">
+
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-secondary" [ngClass]="{'active': filter === 'all'}">
+    <input (click)="filter='all'" type="radio" name="options" id="option1" autocomplete="off"> All
+  </label>
+  <label class="btn btn-secondary" [ngClass]="{'active': filter === 'active'}">
+    <input (click)="filter='active'" type="radio" name="options" id="option2" autocomplete="off" checked> Active
+  </label>
+  <label class="btn btn-secondary" [ngClass]="{'active': filter === 'completed'}">
+    <input (click)="filter='completed'" type="radio" name="options" id="option3" autocomplete="off"> Completed
+  </label>
+</div>
+
+<div class="todo-container">
+  <div class="todo-item" *ngFor="let todo of todosFiltered()">
+    <div class="todo-item-left">
+      <input type="checkbox" [(ngModel)]="todo.completed">
+      <div *ngIf="!todo.editing; else editingTodo" 
+          class="todo-item-label"
+          [ngClass]="{'completed' : todo.completed}"
+          (dblclick)="editTodo(todo)"
+          (press)="editTodo(todo)">{{ todo.title }}</div>
+      <ng-template #editingTodo>
+        <input type="text" class="todo-item-edit" 
+          [(ngModel)]="todo.title" 
+          (blur)="doneEdit(todo)" 
+          (keyup.enter)="doneEdit(todo)" 
+          (keyup.esc)="cancelEdit(todo)" 
+          autofocus>
+      </ng-template>
+    </div>
+    <div class="remove-item" (click)="deleteTodo(todo.id)">
+      &times;
+    </div>
+  </div>
+</div>
+
+<div class="extra-container">
+  <div><input #someVar type="checkbox" id="checkallstuff" (change) = "checkAllTodos()"> Check all</div>
+  <div class="clearConteiner" *ngIf="atLeastOneCompleted()" (click) = "clearCompleted()">Clear completed</div>
+  <div>{{ remaining() }} items left</div>
+</div>
+
