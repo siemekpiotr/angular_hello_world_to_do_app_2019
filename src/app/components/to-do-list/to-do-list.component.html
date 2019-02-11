@@ -16,7 +16,8 @@ placeholder="What to do?" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()">
 <div class="todo-container">
   <div class="todo-item" *ngFor="let todo of todosFiltered()">
     <div class="todo-item-left">
-      <input type="checkbox" [(ngModel)]="todo.completed">
+      <input type="checkbox" [(ngModel)]="todo.completed" id="{{ todo.title }}" name="cb" value="">
+      <label for="{{ todo.title }}"></label>
       <div *ngIf="!todo.editing; else editingTodo" 
           class="todo-item-label"
           [ngClass]="{'completed' : todo.completed}"
@@ -38,8 +39,10 @@ placeholder="What to do?" [(ngModel)]="todoTitle" (keyup.enter)="addTodo()">
 </div>
 
 <div class="extra-container">
-  <div><input #someVar type="checkbox" id="checkallstuff" (change) = "checkAllTodos()"> Check all</div>
+  <div><input #someVar type="checkbox" id="checkallstuff" (change) = "checkAllTodos()"> 
+    <label for="checkallstuff"></label>Check all
+  </div>
+
   <div class="clearConteiner" *ngIf="atLeastOneCompleted()" (click) = "clearCompleted()">Clear completed</div>
   <div>{{ remaining() }} items left</div>
 </div>
-
